@@ -1,0 +1,42 @@
+package TeamAselphina.day01;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class UPS01 {
+    public static void main(String[] args) throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("http://demo.guru99.com/test/radio.html");
+        WebElement radio1 = driver.findElement(By.id("vfb-7-1"));
+        WebElement radio2 = driver.findElement(By.id("vfb-7-2"));
+
+        //Radio Button1 is selected
+        radio1.click();
+        System.out.println("Radio Button Option 1 Selected");
+
+        //Radio Button1 is de-selected and Radio Button2 is selected
+        radio2.click();
+        System.out.println("Radio Button Option 2 Selected");
+       driver.get("https://brand.ups.com/en-us/register.html");
+
+       Thread.sleep(3000);
+       driver.navigate().refresh();
+
+        WebElement radio3 = driver.findElement(By.xpath("//input[@id='radio3']"));
+        System.out.println(radio3);
+        radio3.click();
+        //System.out.println("Radio Button Option 3 Selected");
+
+        WebElement secondOption = driver.findElement(By.xpath("//span[.='UPS Employee (UPS email address required)']"));
+        secondOption.click();
+    }
+
+
+}
